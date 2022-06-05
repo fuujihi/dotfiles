@@ -11,6 +11,7 @@ set wildmenu " コマンドモードの補完
 set autoindent " 改行時にインデント
 set clipboard=unnamed  "yankでクリップボードにコピー
 set hls " 検索した結果をハイライト
+let g:webdevicons_enable_nerdtree = 1 " ツリーにアイコン表示
 " ;でコマンド入力
 noremap ; :
 
