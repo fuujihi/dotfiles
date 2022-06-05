@@ -15,6 +15,12 @@ let g:webdevicons_enable_nerdtree = 1 " ツリーにアイコン表示
 " ;でコマンド入力
 noremap ; :
 
+" terminal setting
+command! -nargs=* T split | wincmd j | resize 20 | terminal <args>
+autocmd TermOpen * startinsert
+:tnoremap <Esc> <C-\><C-n>
+
+
 " NERDTree setting
 map <C-e> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
