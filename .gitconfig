@@ -1,0 +1,18 @@
+[core]
+    pager = git-split-diffs --color | less -RFX
+
+[push]
+    default = current
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+[pull]
+    rebase = false
+
+[ghq]
+    root = ~/go/src
+    root = ~/git/
