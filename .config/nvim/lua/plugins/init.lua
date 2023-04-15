@@ -77,9 +77,9 @@ return packer.startup(function(use)
         'hrsh7th/nvim-cmp',
         module   = { 'cmp' },
         requires = {
-            { "hrsh7th/cmp-buffer",   event = { "InsertEnter" } },
-            { "hrsh7th/cmp-cmdline",  event = { "InsertEnter" } },
-            { "hrsh7th/cmp-nvim-lsp", event = { "InsertEnter" } },
+            { 'hrsh7th/cmp-buffer',   event = { 'InsertEnter' } },
+            { 'hrsh7th/cmp-cmdline',  event = { 'InsertEnter' } },
+            { "hrsh7th/cmp-nvim-lsp", event = { "VimEnter" } },
         },
         config = function() require('plugins.config.cmp') end,
     } -- completion
@@ -91,6 +91,7 @@ return packer.startup(function(use)
 
     use {
         'windwp/nvim-autopairs',
+        event = { 'InsertEnter' },
         config = function() require('nvim-autopairs').setup{} end,
     } -- autopair
 
@@ -110,22 +111,19 @@ return packer.startup(function(use)
 
     use {
         'neovim/nvim-lspconfig',
-        event = { "BufReadPre" },
-        requires = {
-            { "hrsh7th/cmp-nvim-lsp", opt = true },
-        },
+        event = { "VimEnter" },
         config = function() require('plugins.config.lspconfig') end,
     } -- lsp
 
+    use 'hrsh7th/cmp-nvim-lsp'
+
     use {
         'williamboman/mason.nvim',
-        event  = { "BufReadPre" },
         config = function() require('mason').setup() end,
     } -- lsp
 
     use {
         'williamboman/mason-lspconfig.nvim',
-        event  = { "BufReadPre" },
         config = function() require('mason-lspconfig').setup() end,
     } -- lsp config
 
@@ -139,4 +137,13 @@ return packer.startup(function(use)
         wants  = { 'nui.nvim', 'nvim-notify' },
         config = function() require('plugins.config.noice') end,
     }) -- UI for messages, cmdline, popupmenu
+
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        event = { 'VimEnter' },
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+    }
 end)
