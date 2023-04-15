@@ -24,7 +24,7 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   -- buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', '<C-j>', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
 end
 
@@ -93,7 +93,7 @@ nvim_lsp.lua_ls.setup {
       },
     },
     perlnavigator = {
-        perlPath = 'perl'
+        perlPath = '~/.asdf/shims/perl'
     },
   },
 }
