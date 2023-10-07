@@ -4,7 +4,7 @@
   "cmp-cmdline": { "branch": "main", "commit": "8ee981b4a91f536f52add291594e89fb6645e451" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "44b16d11215dce86f253ce0c30949813c0a90765" },
   "gitsigns.nvim": { "branch": "main", "commit": "ff01d34daaed72f271a8ffa088a7e839a60c640f" },
-  "indent-blankline.nvim": { "branch": "master", "commit": "877c1db2bf957300097dd5348a665666a4d900cb" },
+  "indent-blankline.nvim": { "branch": "master", "commit": "9637670896b68805430e2f72cf5d16be5b97a22a" },
   "lazy.nvim": { "branch": "main", "commit": "62745a7320f48a00ac4f7b0591352608cbc6bcea" },
   "lspkind-nvim": { "branch": "master", "commit": "57610d5ab560c073c465d6faf0c19f200cb67e6e" },
   "lspsaga.nvim": { "branch": "main", "commit": "ee25183ca57f4031e0e4a8cfff8f06700b06f05d" },
@@ -23,7 +23,7 @@
   "onedark.nvim": { "branch": "master", "commit": "dac8c39812dae025255c9069a260e1f69d967927" },
   "plenary.nvim": { "branch": "master", "commit": "9ce85b0f7dcfe5358c0be937ad23e456907d410b" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "6e51d0cd6447cf2525412220ff0a2885eef9039c" },
-  "telescope.nvim": { "branch": "master", "commit": "205f469244916716c49cc2b9026566749425c5ba" },
+  "telescope.nvim": { "branch": "master", "commit": "5a747a9587e4bfc4ae086a38cc679fe54f983b69" },
   "toggleterm.nvim": { "branch": "main", "commit": "c80844fd52ba76f48fabf83e2b9f9b93273f418d" },
   "vim-im-select": { "branch": "master", "commit": "7a9cd387bc4c45db0d89e5bc8606141440358717" }
 }

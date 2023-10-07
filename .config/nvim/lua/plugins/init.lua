@@ -22,9 +22,9 @@ return {
         config = function() require('gitsigns').setup{} end,
     },
     { -- indent line
-        "lukas-reineke/indent-blankline.nvim",
+        "lukas-reineke/indent-blankline.nvim", tag="v2.20.8",
         config = function()
-            require('ibl').setup()
+            require('indent_blankline').setup()
         end,
     },
     { -- UI for messages, cmdline, popupmenu
