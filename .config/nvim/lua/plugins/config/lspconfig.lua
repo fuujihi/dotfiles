@@ -1,31 +1,39 @@
---vim.lsp.set_log_level("debug")
+local mason = require('mason')
+local lspconfig = require('lspconfig')
+local mason_lspconfig = require('mason-lspconfig')
 
-local status, nvim_lsp = pcall(require, "lspconfig")
-if (not status) then return end
+mason.setup()
+mason_lspconfig.setup()
+mason_lspconfig.setup_handlers({
+    function(server_name)
+        lspconfig[server_name].setup({})
+    end,
+})
 
 local protocol = require('vim.lsp.protocol')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  -- local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  --Enable completion triggered by <c-x><c-o>
+  -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
-  local opts = { noremap = true, silent = true }
+  -- local opts = { noremap = true, silent = true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   -- buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   -- buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   -- buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   -- buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-  vim.keymap.set('n', '<C-j>', vim.lsp.buf.definition, opts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+  -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  -- vim.keymap.set('n', '<C-j>', vim.lsp.buf.definition, opts)
+  -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
 end
 
 protocol.CompletionItemKind = {
@@ -61,23 +69,16 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(
   vim.lsp.protocol.make_client_capabilities()
 )
 
-nvim_lsp.flow.setup {
+lspconfig.flow.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
 
--- nvim_lsp.tsserver.setup {
---   on_attach = on_attach,
---   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
---   cmd = { "typescript-language-server", "--stdio" },
---   capabilities = capabilities
--- }
-
-nvim_lsp.sourcekit.setup {
+lspconfig.sourcekit.setup {
   on_attach = on_attach,
 }
 
-nvim_lsp.lua_ls.setup {
+lspconfig.lua_ls.setup {
   on_attach = on_attach,
   settings = {
     Lua = {
@@ -98,16 +99,13 @@ nvim_lsp.lua_ls.setup {
   },
 }
 
-nvim_lsp.perlnavigator.setup {}
-nvim_lsp.phpactor.setup {}
-
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-  underline = true,
-  update_in_insert = false,
-  virtual_text = { spacing = 4, prefix = "●" },
-  severity_sort = true,
-}
+      underline = true,
+      update_in_insert = false,
+      virtual_text = { spacing = 4, prefix = "●" },
+      severity_sort = true,
+    }
 )
 
 -- Diagnostic symbols in the sign column (gutter)

@@ -16,6 +16,7 @@ vim.opt.backup = false
 vim.opt.showcmd = true
 vim.opt.cmdheight = 0
 vim.opt.laststatus = 3
+vim.opt.list = true
 vim.opt.expandtab = true
 vim.opt.scrolloff = 10
 vim.opt.shell = 'fish'
@@ -43,3 +44,4 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 
 -- Add asterisks in block comments
 vim.opt.formatoptions:append { 'r' }
+
