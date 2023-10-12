@@ -52,7 +52,8 @@ return {
         dependencies = {
             "nvim-telescope/telescope.nvim",
             "nvim-lua/plenary.nvim",
-            "kyazdani42/nvim-web-devicons"
+            "kyazdani42/nvim-web-devicons",
+            "fdschmidt93/telescope-egrepify.nvim"
         },
         config = function() require('plugins.config.telescope') end,
     },
