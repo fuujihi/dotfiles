@@ -37,3 +37,6 @@ keymap.set("n", "<C-w><down>", "<C-w>-")
 keymap.set("n", "<C-s>", ":w<CR>", { noremap = true })
 
 keymap.set("n", "q", "", { noremap = true })
+
+-- File tree
+keymap.set("n", ";t", ":NvimTreeToggle<CR>", { silent = true })

@@ -3,3 +3,9 @@
 
 # packer.nvim
 packer_compiled.lua
+
+# lazy.nvim
+lazy-lock.json
+
+# backup directories
+*.old

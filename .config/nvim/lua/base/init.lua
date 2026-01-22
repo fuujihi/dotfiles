@@ -30,7 +30,13 @@ vim.opt.tabstop = 4
 vim.opt.wrap = false -- No Wrap lines
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.path:append({ "**" }) -- Finding files - Search down into subfolders
-vim.opt.wildignore:append({ "*/node_modules/*" })
+vim.opt.wildignore:append({ "*/node_modules/*", "*/.venv/*", "*/htmlcov/*", "*/__pycache__/*", "*/.mypy_cache/*", "*.pyc" })
+
+-- パフォーマンス最適化
+vim.opt.updatetime = 300 -- CursorHold時間短縮
+vim.opt.timeout = true
+vim.opt.timeoutlen = 500 -- キー待機時間短縮
+vim.opt.synmaxcol = 200 -- 長い行の構文ハイライト制限
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
