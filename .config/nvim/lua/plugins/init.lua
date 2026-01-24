@@ -1,4 +1,22 @@
 return {
+	{ -- which-key for keybinding hints
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		config = function()
+			local wk = require("which-key")
+			wk.setup({
+				delay = 300,
+				icons = {
+					mappings = false,
+				},
+			})
+			wk.add({
+				{ ";", group = "Search/Tools" },
+				{ "s", group = "Window/Split" },
+				{ "t", group = "Tab" },
+			})
+		end,
+	},
 	{ -- onedark theme
 		"navarasu/onedark.nvim",
 		priority = 1000, -- テーマは最優先で読み込み
@@ -138,31 +156,23 @@ return {
 	}, -- automatically change IM
 	{ -- file tree
 		"nvim-tree/nvim-tree.lua",
-		event = "VeryLazy", -- 起動直後に読み込み
+		lazy = false, -- 起動時に即座に読み込み
+		priority = 900, -- テーマの次に読み込み
 		keys = ";t", -- 手動トグル用
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
-		init = function()
-			-- lazy loading前に起動時自動表示用のautocmdを設定
-			vim.api.nvim_create_autocmd("VimEnter", {
-				callback = function()
-					local args = vim.fn.argv()
-					if #args == 0 or vim.fn.isdirectory(args[1]) == 1 then
-						-- lazy loadingされたnvim-treeを読み込んで開く
-						vim.defer_fn(function()
-							require("nvim-tree.api").tree.open()
-							-- フォーカスを編集ペインに移動
-							vim.defer_fn(function()
-								vim.cmd("wincmd l")
-							end, 100)
-						end, 50)
-					end
-				end,
-			})
-		end,
 		config = function()
 			require("plugins.config.nvim-tree")
+			-- 設定後すぐにツリーを開く
+			require("nvim-tree.api").tree.open()
+			-- UIが準備完了後にフォーカスを編集ペインに移動
+			vim.api.nvim_create_autocmd("UIEnter", {
+				once = true,
+				callback = function()
+					vim.cmd("wincmd l")
+				end,
+			})
 		end,
 	},
     {

@@ -79,14 +79,14 @@ telescope.setup({
 -- 高速ファイル検索（通常使用、隠しファイル含む）
 vim.keymap.set("n", ";f", function()
 	builtin.find_files()
-end)
+end, { desc = "Find files" })
 
 -- Gitトラッキングファイルのみ検索（更に高速）
 vim.keymap.set("n", ";F", function()
 	builtin.git_files({
 		show_untracked = true,
 	})
-end)
+end, { desc = "Find git files" })
 
 -- 全ファイル検索（.gitignore無視、最も広範囲）
 vim.keymap.set("n", ";af", function()
@@ -94,47 +94,47 @@ vim.keymap.set("n", ";af", function()
 		no_ignore = true,
 		file_ignore_patterns = { ".git/**", "node_modules/**" },
 	})
-end)
+end, { desc = "Find all files" })
 
 -- 特定ファイルタイプ検索
 vim.keymap.set("n", ";py", function()
 	builtin.find_files({
 		find_command = { "fd", "--extension", "py", "--strip-cwd-prefix" },
 	})
-end)
+end, { desc = "Find Python files" })
 
 vim.keymap.set("n", ";js", function()
 	builtin.find_files({
 		find_command = { "fd", "--extension", "js", "--extension", "ts", "--extension", "jsx", "--extension", "tsx", "--strip-cwd-prefix" },
 	})
-end)
+end, { desc = "Find JS/TS files" })
 
 -- 最近使用したファイル
 vim.keymap.set("n", ";r", function()
 	builtin.oldfiles()
-end)
+end, { desc = "Recent files" })
 
 -- テキスト検索
 vim.keymap.set("n", ";g", function()
 	telescope.extensions.egrepify.egrepify()
-end)
+end, { desc = "Live grep" })
 
 -- バッファ一覧
 vim.keymap.set("n", "\\\\", function()
 	builtin.buffers()
-end)
+end, { desc = "Buffers" })
 
 -- ヘルプ検索
 vim.keymap.set("n", ";h", function()
 	builtin.help_tags()
-end)
+end, { desc = "Help tags" })
 
 -- LSP関連
 vim.keymap.set("n", ";e", function()
 	builtin.diagnostics()
-end)
+end, { desc = "Diagnostics" })
 
 -- 検索履歴再開
 vim.keymap.set("n", ";;", function()
 	builtin.resume()
-end)
+end, { desc = "Resume search" })
