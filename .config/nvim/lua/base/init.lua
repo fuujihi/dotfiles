@@ -13,6 +13,7 @@ vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.hlsearch = true
 vim.opt.backup = false
+vim.opt.undofile = true -- 永続的なundo履歴
 vim.opt.showcmd = true
 vim.opt.cmdheight = 0
 vim.opt.laststatus = 3
