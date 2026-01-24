@@ -184,11 +184,29 @@ return {
 			})
 		end,
 	},
-    {
-        "github/copilot.vim",
-        event = "InsertEnter", -- 挿入モード時
-        config = function()
-            vim.g.copilot_filetypes = {markdown = true}
+	{ -- copilot.lua (lighter than copilot.vim)
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({
+				suggestion = {
+					enabled = true,
+					auto_trigger = true,
+					keymap = {
+						accept = "<Tab>",
+						accept_word = "<C-Right>",
+						accept_line = "<C-Down>",
+						next = "<M-]>",
+						prev = "<M-[>",
+						dismiss = "<C-]>",
+					},
+				},
+				filetypes = {
+					markdown = true,
+					yaml = true,
+				},
+			})
 		end,
-    },
+	},
 }
