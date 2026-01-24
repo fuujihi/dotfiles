@@ -59,7 +59,18 @@ return {
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" }, -- ファイル読み込み時
 		config = function()
-			require("gitsigns").setup({})
+			require("gitsigns").setup({
+				current_line_blame = true,
+				current_line_blame_opts = {
+					delay = 300,
+				},
+				on_attach = function(bufnr)
+					local gs = package.loaded.gitsigns
+					local opts = { buffer = bufnr }
+					vim.keymap.set("n", "]c", gs.next_hunk, vim.tbl_extend("force", opts, { desc = "Next hunk" }))
+					vim.keymap.set("n", "[c", gs.prev_hunk, vim.tbl_extend("force", opts, { desc = "Prev hunk" }))
+				end,
+			})
 		end,
 	},
 	{ -- indent line
