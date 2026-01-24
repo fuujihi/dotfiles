@@ -73,8 +73,18 @@ telescope.setup({
 			end,
 		},
 	},
-	extensions = {},
+	extensions = {
+		fzf = {
+			fuzzy = true,
+			override_generic_sorter = true,
+			override_file_sorter = true,
+			case_mode = "smart_case",
+		},
+	},
 })
+
+-- fzf-native extension をロード
+pcall(telescope.load_extension, "fzf")
 
 -- 高速ファイル検索（通常使用、隠しファイル含む）
 vim.keymap.set("n", ";f", function()
