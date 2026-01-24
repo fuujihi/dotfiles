@@ -17,6 +17,15 @@ return {
 			})
 		end,
 	},
+	{ -- flash.nvim for quick navigation
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {},
+		keys = {
+			{ "gs", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash jump" },
+			{ "gS", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash treesitter" },
+		},
+	},
 	{ -- onedark theme
 		"navarasu/onedark.nvim",
 		priority = 1000, -- テーマは最優先で読み込み
